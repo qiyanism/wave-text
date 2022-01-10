@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Wavetext</title>
+        <link rel="stylesheet" href="https://dl.dropbox.com/s/ox335gp8brpib8t/style.css?dl=0">
+        <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    </head>
+        <body>
+           
+            <div id="btn">
+                <form name="frmText" action="index.html" method="get">
+                    <input type="text" name="txtInsert" id="txtInsert" value="Don't touch me" placeholder="(this part is developing)">
+                </form>
+                <button onclick="changed()">submit</button>
+            </div>
+
+           
+                <div class="info">
+                    <i class="icon-info-sign">description(hover/press)</i>
+              
+                    <span class="extra-info">
+                        ในส่วนนี้เป็นส่วนที่ถูกเพิ่มขึ้นมาภายหลัง จุดประสงค์เพื่อให้โปรแกรมสามารถรับค่าจากผู้ใช้เป็น text
+                        แล้วtext นั้นจะไปแสดงผลบนหน้าจอ โดยมีanimation เคลื่อนไหวอย่างเช่นตัวอย่าง
+                        <p>
+                            ทั้งนี้ปัญหาที่ผมพบเจอมีอยู่2กรณี
+                              <p>1.ฟังชั่น "splitting.js" ไม่สามารถทำงานได้ หากมีการรับค่าtextใหม่มาแทนที่เดิม ซึ่งเป็นค่าที่กำหนดไว้แล้ว <a href="https://splitting.js.org/" target="_blank"> <b> splitting.js คืออะไร??</b></a></p>
+                            <p>2.เพื่อให้ animation ทำงานได้อย่างเหมือนกันแม้ว่าตัวอักษรจะไม่เท่ากัน ผมจึงได้สร้างสมการในส่วนของCSSขึ้นมา ซึ่งใน1รอบลูป 
+                                จะทำงานเป็นเวลา4000ms(4s) การจะให้เริ่มลูปใหม่ได้ทันพอดีกับตัวอักษรทั้งหมดจึงใช้สมการ [(--char-index + 1)
+                                x (4000ms/จำนวนตัวอักษร)] (ตัวแปร --char-indexจากฟังก์ชั่น splitting.js ของแต่ละตัวอักศรที่ถูกsplt เป็นตัวแปรที่อยู่ใน CSS) ซึ่งจำนวนตัวอักษรหาได้จากการกำหนดfunction ใน javascript  (let text = document.getElementById("txtInsert").value;
+                                let length = text.length;
+                                ) 
+                                <p>
+                                   <b>ซึ่งปัญหาอยู่ในส่วนนี้</b> - การจะใช้ค่าจำนวนตัวอักษรนั้น เป็นตัวแปรที่อยู่ใน javascript ซึ่งตัวแปรใน js ไม่สามารถนำมาใช้ใน CSS ได้นอกจากเขียนคำสั่ง CSS ใน javascript แทน ซึ่งในระหว่างการเขียน ผมไม่สามารถเรียกค่าตัวแปรจาก CSS ให้มาเป็นตัวเลขได้ จึงต้องทำการศึกษาเพิ่มต่อไป - Thanut Promsupsin 29/12/2021
+                                </p> 
+                    </span>
+                  </div>
+               
+           
+
+
+            <div class="main">
+                <h1 id="demo" data-splitting>Don't touch me</h1>
+                <script src="https://dl.dropbox.com/s/60cwyituhew4d38/splitting.js?dl=0"></script>
+                <script> Splitting(); </script>
+            </div>
+            <script src="https://dl.dropbox.com/s/l8b5lcz7bn9ht22/index.js?dl=0"></script>
+
+            
+</body>
+    
+    
+</html>
